@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Popup form template for xbRefs-Button, xbRefs v1.9.9.8 7th February 2022" />
+<link rel="stylesheet" href="../css/xbrefsbtn.css" type="text/css" />
+<script type="text/javascript" src="../js/xbrefsbtn.js"></script>
+</head>
+<!-- This is a template file and not intended to be used without preprocessing
+Strings starting XBMODAL_ are replaced with translated strings
+Strings starting VAR_ are replaced with variable values
+The replacements happen when the xbRefs-Button initialises and the result is saved as a new file
+The new file is saved as media/plg_button_xbrefsbtn/html/xbrefsbtn_popup.en-GB.html
+ -->
+<body>
+<div>
+	<h3>XBMODAL_FORM_TITLE</h3>
+</div>
+ <!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'tag')">Tag Ref.</button>
+  <button class="tablinks VAR_HIDEWEB" onclick="openTab(event, 'link')">Link Ref.</button>
+  <button class="tablinks" onclick="openTab(event, 'text')">Text Ref.</button>
+  <button class="tablinks" onclick="openTab(event, 'foot')">Footnotes</button>
+</div>
+<div id="strt" class="tabcontent" style="display:block;" >
+	Click a tab button above to start
+</div>
+
+<form id="xbrefsbtn-settings-form">
+
+<div id="tag" class="tabcontent">
+<div class="xb_dotag">
+	<fieldset class="paramset"><legend>XBMODAL_FORM_REFTAG</legend>
+		<label id="tagid_lbl" for="id_tagid">XBMODAL_FORM_USETAG</label><br />
+		<select id="id_tagid" name="tagid" style="width:60%">
+			VAR_TAGLIST
+		</select>
+		<hr />
+		<label id="addtext_lbl" for="id_addtext" >XBMODAL_FORM_TEXT_LBL</label> 
+		<br />
+		<textarea id="id_addtext"  name="addtext" placeholder="XBMODAL_FORM_TEXT_ADDT_PHOLD"  
+			rows="5" cols="60" maxlength="500"  style="width:80%;"></textarea>			
+	</fieldset>
+</div>
+</div>
+  
+<div id="link" class="tabcontent VAR_HIDEWEB">
+<div class="xb_dolink">
+	<fieldset class="paramset"><legend>XBMODAL_FORM_REFLNK</legend>
+		<label id="linkid_lbl" for="id_linkid">XBMODAL_FORM_USELNK_LBL</label><br />
+		<select id="id_linkid" name="linkid" style="width:60%">
+			VAR_LINKLIST
+		</select>
+		<hr />
+		<label id="addlinktext_lbl" for="id_addlinktext" >XBMODAL_FORM_TEXT_LBL</label><br />
+		<br />
+		<textarea id="id_addlinktext"  name="addlinktext" placeholder="XBMODAL_FORM_TEXT_ADDT_PHOLD"  
+			rows="5" cols="60" maxlength="500"  style="width:80%;"></textarea>			
+	</fieldset>
+</div>
+</div>
+ 
+<div id="text" class="tabcontent">
+<div class="xb_notag" >
+	<fieldset class="paramset">
+		<legend>XBMODAL_FORM_REFTXT</legend>
+		<label id="title_lbl" for="id_title" >XBMODAL_FORM_REFTIT_LBL</label><br />
+		<input id="id_title"  type="text" name="title" style="margin:0;" value="" placeholder="XBMODAL_FORM_REFTIT_PHOLD" maxlength="100" style="width:60%;" />
+		<br />
+		<label id="desctext_lbl" for="id_desctext" >XBMODAL_FORM_REFTXT_LBL</label> 
+		<br />
+		<textarea id="id_desctext"  name="desctext" placeholder="XBMODAL_FORM_TEXT_ADDT_PHOLD"  
+			rows="5" cols="60" maxlength="800"  style="width:80%;"></textarea>				
+	</fieldset>
+</div>
+</div>
+
+<div id="foot" class="tabcontent">
+	<fieldset class="paramset">
+		<legend>XBMODAL_FORM_FOOTTXT</legend>
+		<label id="head_lbl" for="id_head" >XBMODAL_FORM_REFTIT_LBL</label><br />
+		<input id="id_head"  type="text" name="head" placeholder="VAR_FOOTHEAD"  />
+	</fieldset>
+	<fieldset class="paramset">
+		<legend>Footnote Numbering</legend>
+		<label id="num_lbl" for="id_num" >Numbering Start</label>
+		<input id="id_num"  type="number" name="num" min="1" max="9999" default="0" />
+		<p>This will set the start number for subsequent footnotes.Use one for default to start at 1 at begining of article. 
+		To change the start for the whole article insert this shortcode at the top of the article before any references.</p>
+	</fieldset>
+</div>
+
+<div class="commondiv" id="hideftdiv">
+	<div class="VAR_HIDEDIV">
+		<fieldset class="paramset" >
+			<legend>XBMODAL_FORM_CITE_DESC</legend>
+			<div>
+				<div class="subhead">XBMODAL_FORM_DISPTYPE_LBL</div>
+				<input type="radio" id="id_disppop" name="disp" value="pop" 
+					onclick="showElementsByClass('xb_usepop');hideElementsByClass('xb_usefoot');" />
+				<label id="disppop_lbl" for="id_disppop">XBMODAL_POPUP</label>	
+				<input type="radio" id="id_dispfoot" name="disp" value="foot" 
+					onclick="hideElementsByClass('xb_usepop');showElementsByClass('xb_usefoot');" />
+				<label id="dispfoot_lbl" for="id_dispfoot">XBMODAL_FOOTNOTE</label>
+				<input type="radio" id="id_dispboth" name="disp" value="both" 
+					onclick="showElementsByClass('xb_usepop');showElementsByClass('xb_usefoot');" />
+				<label id="dispboth_lbl" for="id_dispboth">XBMODAL_BOTH</label>
+				<input type="radio" id="id_dispdef" name="disp" value="" checked="checked" />
+				<label id="dispdef_lbl" for="id_dispdef" >XBMODAL_DEFAULT VAR_DISPDEF</label>
+			</div>
+			<div>
+			<br />
+				<div class="subhead">Trigger Action<!--<br />Locked to default VAR_TRIGDEF--></div>
+						 
+				<input type="radio" id="id_trighover" name="trig" value="hover" 
+					onclick="showElementsByClass('xb_usepop');hideElementsByClass('xb_usefoot');" />
+				<label id="disppop_lbl" for="id_disppop">Hover</label>	
+				<input type="radio" id="id_trigfocus" name="trig" value="focus" 
+					onclick="hideElementsByClass('xb_usepop');showElementsByClass('xb_usefoot');" />
+				<label id="dispfoot_lbl" for="id_dispfoot">Focus</label>
+				<input type="radio" id="id_trigclick" name="trig" value="click" 
+					onclick="hideElementsByClass('xb_usepop');showElementsByClass('xb_usefoot');" />
+				<label id="dispfoot_lbl" for="id_dispfoot">Click</label>
+				<input type="radio" id="id_trigdef" name="trig" value="" checked="checked" />
+				<label id="dispdef_lbl" for="id_dispdef" >XBMODAL_DEFAULT VAR_TRIGDEF</label>
+				 
+			</div>
+		
+		</fieldset>
+		
+	</div>
+	<div>VAR_DEFLIST</div>
+</div>
+
+	<fieldset class="paramset" >
+		<legend>XBMODAL_SHORTCODE_DISPLAY</legend>
+		<p>VAR_SCHILIMESS</p>
+	</fieldset>
+	<input type="hidden" id="activetab" name="activetab" value="" />
+	<input type="hidden" id="id_hicolour" name="hicolour" value="VAR_HICOLOUR" />
+	<input type="hidden" id="id_hideval" name="hilisc" value="VAR_HILISC" />
+	<p>
+	<button id="xbrefsbtn-settings-submit" class="insbtn" type="button">XBMODAL_INSERT</button>
+	</p>
+</form>
+</body>
+</html>

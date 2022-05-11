@@ -1,0 +1,68 @@
+/**
+ * @package xbRefs Package 
+ * @subpackage xbRefs-Content Plugin
+ * @filesource /media/plg_content_xbrefscon/css/xbrefs.css
+ * @version 1.9.9.9 8th February 2022
+ * @desc stylesheet for xb reference displays. 
+ * 		Modifies default bootstrap tooltip and popover styles and adds xbref footer styles
+ * @author Roger C-O
+ * @copyright (C) Roger Creagh-Osborne, 2022
+ * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+**/
+
+/* cues to indicate presence of popover. text-decoration-style and text-decoration-color set by options 
+ .xbhover, xbfocus, xbclick with hover text-decoration-color and text-decoration-line defined from options */
+
+/* superscript link to footnote. color:footcolour */
+.xbrefsup a {
+	margin: 0 5px;
+	text-decoration: none;
+}
+/** footnote styles **/
+
+/* Footnote enclosing div. color:footcolour, background-color & border-color:footbg, border: footborder, font-size: footfontsize*/
+.xbreffooter {
+	padding:4px 20px 8px 20px;
+}
+/*  Header for footnote area. font-size: fthdfontsize, other styles from xbreffooter */
+.xbreffthead {
+	font-weight: bold; 
+	font-size: 1.1em;
+	margin-bottom:10px;
+}
+/* the citation name. other styles from xbreffooter */
+.xbrefcitename {
+	font-weight:bold;
+}
+
+/* Popover styles - these override the defaults*/
+/* border around popover */
+ .xbrefpop + .popover {
+    border: 2px solid #822000;
+}
+/* Popover Title */
+.xbrefpop + .popover > .popover-title {
+    padding: 4px 5px 3px 5px;
+    border-bottom: 1px solid;
+    font-size: 1.0em;
+    font-weight:bold;
+    text-align:center;
+}
+/* Popover Body */
+.xbrefpop  + .popover > .popover-content {
+    font-size: 0.9em;
+    padding: 4px 5px 3px 5px;
+}
+/* Popover Arrows */
+
+/*prompt to close click popover.  */
+.clickprompt {
+	font-size: 0.85em;
+	font-style: italic;
+	text-align:center;
+	padding: 0 8px;
+	border-top:solid 1px #444;
+	color: #444;
+	background-color: #eee;
+}
+

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="editors-xtd" method="upgrade">
+	<name>Button - xbRefs</name>
+	<version>2.1.1</version>
+	<creationDate>24th April 2022</creationDate>
+	<author> Roger C-O</author>
+	<copyright>Copyright (c) Roger Creagh-Osborne, 2022. All rights reserved.</copyright>
+	<license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+	<authorEmail>roger@crosborne.co.uk</authorEmail>
+	<authorUrl>www.crosborne.co.uk</authorUrl>
+	<description> <![CDATA[ xbRefs Button editor plugin to insert {xbref...} shortcode for a reference]]> </description>
+	<files>
+		<filename plugin="xbrefsbtn">xbrefsbtn.php</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">languages/en-GB.plg_editors-xtd_xbrefsbtn.ini</language>
+		<language tag="en-GB">languages/en-GB.plg_editors-xtd_xbrefsbtn.sys.ini</language>
+	</languages>
+	<media folder="media" destination="plg_button_xbrefsbtn">
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+	<scriptfile>plg_button_xbrefs_script.php</scriptfile>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="verinfo" type="spacer" 
+					label="XBREFSBTN_VER_DESC" 
+				/>
+				<field name="noteshortcode" type="note" 
+					label="XBREFSBTN_NOTESHORTCODE_LBL"
+					description=""
+				/>
+				<field name="infohidden1" type="spacer"
+					label="XBREFSBTN_INFOHIDDEN1_DESC"
+				/>
+				<field name="hilisc" type="radio" 
+					label="XBREFSBTN_HILITESC_LBL" 
+					description="XBREFSBTN_HILITESC_DESC" 
+					class="btn-group" 
+					default="1" 
+				>
+  					<option value="1">JYES</option>
+  					<option value="0">JNO</option>
+				</field>
+				<field name="hicolour" type="color" 
+					label="XBREFSBTN_HIDECOLOR_LBL" 
+					description="XBREFSBTN_HIDECOLOR_DESC"
+					default="#fff8db" format="hex"
+					showon="hilisc:1"
+				/>
+				<field name="infohidden2" type="spacer" 
+					label="XBREFSBTN_INFOHIDDEN2_DESC"
+				/>
+				<field name="tagsetnote" type="note" 
+					label="XBREFSBTN_TAG_SETS_LABEL"
+					description="XBREFSBTN_TAG_SETS_DESC"
+				/>
+				<field name="taglist" type="tag" 
+					label="XBREFSBTN_TAG_LBL"
+					description="XBREFSBTN_TAG_DESC" 
+					mode="nested" multiple="true"
+				/>
+				<field name="usechild" type="radio" 
+					label="XBREFSBTN_CHILD_LBL" 
+					description="XBREFSBTN_CHILD_DESC" 
+					class="btn-group btn-group-yesno"
+					showon="taglist!:"
+					default="1" 
+				>
+  					<option value="1">JYES</option>
+  					<option value="0">JNO</option>
+				</field>
+				<field name="linksetnote" type="note" 
+					label="XBREFSBTN_LINK_SETS_LABEL"
+					description="XBREFSBTN_LINK_SETS_DESC"
+				/>
+				<field name="linkcatlist" type="category" 
+					label="XBREFSBTN_LINKCAT_LBL"
+					description="XBREFSBTN_LINKCAT_DESC" 
+					multiple="true" published="1"
+					extension="com_weblinks"
+				/>
+				<field name="linktaglist" type="tag" 
+					label="XBREFSBTN_LINK_LBL"
+					description="XBREFSBTN_LINK_DESC" 
+					mode="nested" multiple="true"
+				/>
+				<field name="linkusechild" type="radio" 
+					label="XBREFSBTN_CHILD_LBL" 
+					description="XBREFSBTN_CHILD_DESC" 
+					class="btn-group btn-group-yesno"
+					showon="linktaglist!:"
+					default="1" 
+				>
+  					<option value="1">JYES</option>
+  					<option value="0">JNO</option>
+				</field>
+				<field name="defsettings" type="note" 
+					label="XBREFSBTN_DEFAULT_SETTINGS_LBL"
+					description="XBREFSBTN_DEFAULT_SETTINGS_DESC"
+				/>
+				<field name="forcedefs" type="radio" 
+					label="XBREFSBTN_ONLY_DEFAULT_LBL" 
+					description="XBREFSBTN_ONLY_DEFAULT_DESC" 
+					class="btn-group btn-group-yesno"
+					default="0" 
+				>
+  					<option value="1">JYES</option>
+  					<option value="0">JNO</option>
+  				</field>
+			</fieldset>
+			<fieldset name="help">
+				<field name="verinfo2" type="note" 
+					label="XBREFSBTN_VER_LBL" 
+					description="XBREFSBTN_VER_DESC" 
+				/>	
+				<field name="aboutnote" type="note"
+					label="XBREFSBTN_ABOUTNOTE_LABEL"
+					description="XBREFSBTN_ABOUTNOTE_DESC"
+				/>
+				<field name="scnote" type="note"
+					label="XBREFSBTN_SCNOTE_LABEL"
+					description="XBREFSBTN_SCNOTE_DESC"
+				/>
+				
+				<field name="helppagelink" type="note" class="alert alert-success" close="true"
+					label=""
+					description="XBREFSBTN_HELPPAGELINK"
+				/>				
+			</fieldset>			
+		</fields>
+	</config>
+</extension>

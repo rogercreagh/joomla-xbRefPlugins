@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="content" method="upgrade">
+	<name>Content - xbRefs</name>
+	<version>2.1.1</version>
+	<creationDate>11th April 2022</creationDate>
+	<author> Roger C-O</author>
+	<copyright>Copyright (c) Roger Creagh-Osborne, 2022. All rights reserved.</copyright>
+	<license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+	<authorEmail>roger@crosborne.co.uk</authorEmail>
+	<authorUrl>www.crosborne.co.uk</authorUrl>
+	<description>Content plugin to insert tags or text into article as a popover and/or reference footnote using {xbref...} shortcodes</description>
+	<files>
+		<filename plugin="xbrefscon">xbrefscon.php</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">languages/en-GB.plg_content_xbrefscon.ini</language>
+		<language tag="en-GB">languages/en-GB.plg_content_xbrefscon.sys.ini</language>
+	</languages>
+	<media folder="media" destination="plg_content_xbrefscon">
+		<folder>css</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+	<scriptfile>plg_content_xbrefs_script.php</scriptfile>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="verinfo" type="spacer" 
+					label="XBREFSCON_VER_DESC" 
+				/>
+				<field name="deleteshortcodes" type="radio"
+					label="XBREFSCON_DEL_SHORTCODES_LABEL"
+					descritption="XBREFSCON_DEL_SHORTCODES_DESC"
+					class="btn-group btn-group-yesno"
+					default="1" 
+				>
+	 					<option value="1">JYES</option>
+	 					<option value="0">JNO</option>
+				</field>
+					
+				<field name="defsettings" type="note" 
+					label="XBREFSCON_DEFAULT_SETTINGS_LBL"
+					description="XBREFSCON_DEFAULT_SETTINGS_DESC"
+				/>
+				<field name="defdisp" type="radio" 
+					label="XBREFSCON_DISP_LBL" 
+					description="XBREFSCON_DISP_DESC" class="btn-group"
+					default="both" 
+				>
+					<option value="pop">XBREFSCON_POPOVER</option>
+					<option value="foot">XBREFSCON_FOOTNOTE</option>
+					<option value="both">XBREFSCON_BOTH</option>
+				</field>
+				<field name="refbrkt" type="radio" 
+					label="XBREFSCON_USESUPBRKT_LBL" 
+					description="XBREFSCON_USESUPBRKT_DESC" 
+					class="btn-group btn-group-yesno"
+					default="1" 
+				>
+	 				<option value="1">JYES</option>
+	 				<option value="0">JNO</option>
+				</field>
+				<field name="notepop" type="note" 
+					label="XBREFSCON_POPSET_LABEL"
+					description="XBREFSCON_POPSET_DESC"
+				/>
+				<field name="deftrig" type="radio" default="hover" 
+					label="XBREFSCON_POPACTION_LABEL" 
+					description="XBREFSCON_POPACTION_DESC" 
+					class="btn-group"
+				>
+					<option value="hover">XBREFSCON_HOVER</option>
+					<option value="focus">XBREFSCON_FOCUS</option>
+					<option value="click">XBREFSCON_CLICK</option>
+				</field>
+				<field name="clickhelp" type="radio" 
+					label="XBREFSCON_CLICKHELP_LABEL" 
+					description="XBREFSCON_CLICKHELP_DESC" 
+					class="btn-group btn-group-yesno"
+					default="1" 
+				>
+	 				<option value="1">JYES</option>
+	 				<option value="0">JNO</option>
+				</field>
+				<field name="notelink" type="note" 
+					label="XBREFSCON_LINKSET_LABEL"
+					description="XBREFSCON_LINKSET_DESC"
+				/>
+				<field name="weblinktarg" type="list"
+					label="XBREFSCON_LINKTARG_LABEL"
+					description="XBREFSCON_LINKTARG_DESC"
+					default="2"
+				>
+					<option value="0">XBREFSCON_LINKTARG_SAME</option>
+					<option value="1">XBREFSCON_LINKTARG_NEW</option>
+					<option value="2">XBREFSCON_LINKTARG_AUTO</option>
+				</field>
+				<field name="weblinkpos" type="list"
+					label="XBREFSCON_LINKPOS_LABEL"
+					description="XBREFSCON_LINKPOS_DESC"
+					default="1"
+				>
+					<option value="1">XBREFSCON_LINKPOS_VISIT</option>
+					<option value="2">XBREFSCON_LINKPOS_FULL</option>
+					<option value="3">XBREFSCON_LINKPOS_TITLE</option>
+				</field>
+				<!-- 
+				<field name="forceclick" type="radio" 
+					label="XBREFSCON_FORCECLK_LABEL" 
+					description="XBREFSCON_FORCECLK_DESC" 
+					class="btn-group btn-group-yesno"
+					default="1" 
+				>
+	 				<option value="1">JYES</option>
+	 				<option value="0">JNO</option>
+				</field>
+				 -->
+				<field name="linktrig" type="radio" 
+					label="XBREFSCON_LINKTRIG_LABEL" 
+					description="XBREFSCON_LINKTRIG_DESC" 
+					class="btn-group"
+					default="1" 
+				>
+					<option value="">XBREFSCON_PER_SHORTCODE</option>
+					<option value="focus">XBREFSCON_FOCUS</option>
+					<option value="click">XBREFSCON_CLICK</option>
+				</field>
+				
+			</fieldset>
+			<fieldset name="styles">
+				<field name="styver" type="note" 
+					label="XBREFSCON_NOTE_STYVER_LABEL" 
+					description="XBREFSCON_VER_DESC" 
+				/>
+				<field name="footernote" type="note"
+					label="XBREFSCON_NOTE_FOOT_LABEL"
+					description="XBREFSCON_NOTE_FOOT_DESC" 
+				/>
+				<field name="foothdtext" type="text"
+					label="XBREFSCON_FOOT_HEAD_LABEL"
+					description="XBREFSCON_FOOT_HEAD_DESC" 
+					default="References &amp; Footnotes"
+				/>
+				<field name="footerstylenote" type="note"
+					label="XBREFSCON_NOTE_FTSYLE_LABEL"
+					description="XBREFSCON_NOTE_FTSYLE_DESC" 
+				/>
+				<field name="fthdfontsize" type="text" 
+					label="XBREFSCON_FTHDFNT_SIZE_LABEL" 
+					description="XBREFSCON_FTHDFNT_SIZE_DESC" 
+					default="1.1em" 
+				/>
+				<field name="footfontsize" type="text" 
+					label="XBREFSCON_FTFNT_SIZE_LABEL" 
+					description="XBREFSCON_FTFNT_SIZE_DESC" 
+					default="0.9em" 
+				/>
+				<field name="footcolour" type="color"
+					label="XBREFSCON_FTCOL_LABEL"
+					description="XBREFSCON_FTCOL_DESC" 
+					default="#822000"
+				/>
+				<field name="footacolour" type="color"
+					label="XBREFSCON_FTACOL_LABEL"
+					description="XBREFSCON_FTACOL_DESC" 
+					default=""
+				/>
+				<field name="footbg" type="color"
+					label="XBREFSCON_FTBG_LABEL" 
+					description="XBREFSCON_FTBG_DESC" 
+					default="#f0f0f0"
+				/>
+				<field name="footborder" type="checkboxes"
+					label="XBREFSCON_FTBRD_LABEL"
+					description="XBREFSCON_FTBRD_DESC"
+					default="top"
+				>
+				    <option value="top">XBREFSCON_TOP</option>
+				    <option value="rgt">XBREFSCON_RIGHT</option>
+				    <option value="bot">XBREFSCON_BOTTOM</option>
+				    <option value="lft">XBREFSCON_LEFT</option>
+				</field>	
+				
+				<field name="popstylenote" type="note"
+					label="XBREFSCON_NOTE_POPSTYLE_LABEL"
+					description="XBREFSCON_NOTE_POPSTYLE_DESC" 
+				/>
+				<field name="hovercol" type="color"
+					label="XBREFSCON_HOVCOL_LABEL" 
+					description="XBREFSCON_ACTCOL_DESC" 
+					default = "#008000"
+				/>
+				<field name="hoverline" type="list"
+					label="XBREFSCON_HOVLINE_LABEL" 
+					description="XBREFSCON_ACTLINE_DESC" 
+					default="dotted"
+				>
+					<option value="none">XBREFSCON_NONE</option>
+					<option value="dotted">XBREFSCON_DOTTED</option>
+					<option value="dashed">XBREFSCON_DASHED</option>
+					<option value="solid">XBREFSCON_SOLID</option>
+				</field>
+				<field name="focuscol" type="color"
+					label="XBREFSCON_FOCCOL_LABEL" 
+					description="XBREFSCON_ACTCOL_DESC"
+					default = "#00a0a0" 
+				/>
+				<field name="focusline" type="list"
+					label="XBREFSCON_FOCLINE_LABEL" 
+					description="XBREFSCON_ACTLINE_DESC" 
+					default="dashed"
+				>
+					<option value="none">XBREFSCON_NONE</option>
+					<option value="dotted">XBREFSCON_DOTTED</option>
+					<option value="dashed">XBREFSCON_DASHED</option>
+					<option value="solid">XBREFSCON_SOLID</option>
+				</field>
+				<field name="clickcol" type="color"
+					label="XBREFSCON_CLKCOL_LABEL" 
+					description="XBREFSCON_ACTCOL_DESC" 
+					default = "#0000b0"
+				/>
+				<field name="clickline" type="list"
+					label="XBREFSCON_CLKLINE_LABEL" 
+					description="XBREFSCON_ACTLINE_DESC" 
+					default="solid"
+				>
+					<option value="none">XBREFSCON_NONE</option>
+					<option value="dotted">XBREFSCON_DOTTED</option>
+					<option value="dashed">XBREFSCON_DASHED</option>
+					<option value="solid">XBREFSCON_SOLID</option>
+				</field>
+				<field name="infofootstyles" type="spacer" 
+					label="XBREFSCON_FOOTSTYLES_DESC"
+					showon="usexbrefscss:1"
+				/>			
+				<field name="notecss" type="note" 
+					label="XBREFSCON_NOTECSS_LBL" 
+					description="XBREFSCON_NOTECSS_DESC" 
+				/>
+			</fieldset>
+			<fieldset name="help">
+				<field name="titlever" type="note" 
+					label="XBREFSCON_VER_LABEL" 
+					description="XBREFSCON_VER_DESC" 
+				/>			
+				<field name="info1" type="note"
+					label="XBREFSCON_ABOUTNOTE_LABEL"
+					description="XBREFSCON_ABOUTNOTE_DESC"
+				/>
+				<field name="scnote" type="note"
+					label="XBREFSCON_SCNOTE_LABEL"
+					description="XBREFSCON_SCNOTE_DESC"
+				/>
+				<field name="helppagelink" type="note" 
+					label=""
+					description="XBREFSCON_HELPPAGELINK"
+					class="alert alert-success" close="true"
+				/>				
+			</fieldset>			
+		</fields>
+	</config>
+</extension>
